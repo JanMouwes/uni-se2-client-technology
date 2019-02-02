@@ -1,6 +1,13 @@
 var FeedbackWidget = (() => {
 
-
+    /**
+     *
+     * @param {string} type
+     * @param {string} title
+     * @param {string} content
+     * @returns {{feedbackType: *, title: *, content: string, coords: number[], element: null, close: function, display: (function(number, number): (null|HTMLElement)), toElement: (function(): HTMLElement)}}
+     * @private
+     */
     let _createNotification = (type, title, content = "") => {
         let _type = type;
         let _title = title;
