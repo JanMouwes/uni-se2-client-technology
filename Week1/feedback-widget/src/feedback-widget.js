@@ -15,7 +15,7 @@ var FeedbackWidget = (() => {
 
         let _toElement = () => {
             let feedbackWidgetClass;
-            switch (_type) {
+            switch (_type) { //TODO find a better way of doing this
                 case "positive":
                     feedbackWidgetClass = "feedback-widget-positive";
                     break;
@@ -39,40 +39,48 @@ var FeedbackWidget = (() => {
                 top: y + "px"
             });
 
-            let title = document.createElement("span");
-            title.classList.add("feedback-widget-title");
-            element.appendChild(title);
+            let titleElement = document.createElement("span");
+            titleElement.classList.add("feedback-widget-title");
+            titleElement.innerHTML = _title;
+            element.appendChild(titleElement);
 
-            let content = document.createElement("span");
-            content.classList.add("feedback-widget-content");
-            element.appendChild(content);
+            let contentElement = document.createElement("span");
+            contentElement.classList.add("feedback-widget-content");
+            contentElement.innerHTML = _content;
+            element.appendChild(contentElement);
 
-            const size = 15;
-
-            const closeButtonStyle = {
+            //  TODO make single class out of this.
+            const closeButtonSize = 15;
+            let closeButton = document.createElement("span");
+            closeButton.innerHTML = "&#10761;"; //Cross-symbol
+            Object.assign(closeButton.style, {
+                //position in relation to parent element
                 position: "absolute",
-                right: "10px",
+                right: "10px", //TODO find a way to make this dynamic
                 top: "10px",
-                width: size + "px",
-                height: size + "px",
+                //make x- and y-diameter equal
+                width: closeButtonSize + "px",
+                height: closeButtonSize + "px",
+                //centre text
                 textAlign: "center",
-                lineHeight: size + "px",
-                fontSize: size + "px",
+                lineHeight: closeButtonSize + "px",
+                fontSize: closeButtonSize + "px",
+                //make 'button' into circle with black border
                 border: "1px solid black",
-                borderRadius: size + "px",
+                borderRadius: closeButtonSize + "px",
                 cursor: "pointer",
                 backgroundColor: "#E6E6E6"
-            };
-            let closeButton = document.createElement("span");
-            closeButton.innerHTML = "&#10761;";
-            closeButton.onclick = _close;
-            Object.assign(closeButton.style, closeButtonStyle);
-
+            });
+            closeButton.addEventListener("click", _close); //close parent when clicked
             element.appendChild(closeButton);
 
             return element;
         };
 
+        /**
+         * @description closes current element (this.element)
+         * @private
+         */
         let _close = () => {
             if (this.element == null) return;
 
@@ -93,8 +101,7 @@ var FeedbackWidget = (() => {
             element: null,
 
             close: _close,
-            display: _display,
-            toElement: _toElement
+            display: _display
         };
 
     };

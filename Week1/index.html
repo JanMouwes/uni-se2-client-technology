@@ -39,8 +39,8 @@
     <script>
         window.addEventListener("load", () => {
             let body = document.getElementById("body");
-            let top = 0;
-            let right = body.offsetWidth;
+            const top = 0;
+            const right = body.offsetWidth;
 
             let widget = FeedbackWidget.createNotification("positive", "Test", "test content");
             body.appendChild(widget.display(right - 220, top + 20));
