@@ -34,7 +34,7 @@ var FeedbackWidget = (() => {
             let element = document.createElement("div");
             element.classList.add("feedback-widget", feedbackWidgetClass);
             Object.assign(element.style, {
-                position: "absolute",
+                position: "sticky",
                 left: x + "px",
                 top: y + "px"
             });
@@ -107,8 +107,34 @@ var FeedbackWidget = (() => {
     };
 
 
+    const currentScriptPath = document.currentScript.src;
+    const currentScriptDirectory = currentScriptPath + "/..";
+
+    const _cssElementId = "feedback-widget-css";
+    /**
+     * Path to
+     * @type {string}
+     * @private
+     */
+    const _cssElementHref = currentScriptDirectory + "/../assets/feedback-widget.css";
+
+    let _init = () => {
+        if (document.getElementById(_cssElementId) != null) return;
+
+        let head = document.getElementsByTagName('head')[0];
+        let link = document.createElement('link');
+
+        link.id = _cssElementId;
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = _cssElementHref;
+
+        head.appendChild(link);
+    };
+
     return {
-        createNotification: _createNotification
+        createNotification: _createNotification,
+        init: _init
     }
 
 })();

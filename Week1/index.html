@@ -3,41 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style>
-        .feedback-widget {
-            border: 1px solid #333333;
-            border-radius: 5px;
-            width: fit-content;
-            min-width: 200px;
-            padding: 10px;
-            position: absolute;
-        }
 
-        .feedback-widget-title, .feedback-widget-content {
-            display: block;
-        }
-
-        .feedback-widget-title {
-            font-weight: bold;
-        }
-
-        .feedback-widget-positive {
-            background: #83c04b;
-        }
-
-        .feedback-widget-negative {
-            background: #c06254;
-        }
-
-        .feedback-widget-neutral {
-            background: #c0b66b;
-        }
-
-
-    </style>
+    <!--<script src="feedback-widget/src/feedback-widget.js"></script>-->
     <script src="feedback-widget/src/feedback-widget.js"></script>
     <script>
         window.addEventListener("load", () => {
+
+            FeedbackWidget.init();
+
             let body = document.getElementById("body");
             const top = 0;
             const right = body.offsetWidth;
