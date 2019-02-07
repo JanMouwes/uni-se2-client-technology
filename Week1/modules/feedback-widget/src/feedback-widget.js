@@ -118,8 +118,12 @@ var FeedbackWidget = (() => {
      */
     const _cssElementHref = currentScriptDirectory + "/../assets/feedback-widget.css";
 
+    // TODO let _includeFiles
+
     let _init = () => {
-        if (document.getElementById(_cssElementId) != null) return;
+
+
+        if (document.getElementById(_cssElementId) != null) return true;
 
         let head = document.getElementsByTagName('head')[0];
         let link = document.createElement('link');
@@ -130,6 +134,8 @@ var FeedbackWidget = (() => {
         link.href = _cssElementHref;
 
         head.appendChild(link);
+
+        return true;
     };
 
     return {

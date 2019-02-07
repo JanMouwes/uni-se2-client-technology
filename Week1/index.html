@@ -4,13 +4,18 @@
     <meta charset="UTF-8">
     <title>Title</title>
 
-    <!--<script src="feedback-widget/src/feedback-widget.js"></script>-->
-    <script src="feedback-widget/src/feedback-widget.js"></script>
+    <script src="modules/spa/src/spa.js"></script>
+    <!--<script src="modules/data/src/data.js"></script>-->
+    <!--<script src="modules/model/src/model.js"></script>-->
+    <!--<script src="modules/reversi/src/reversi.js"></script>-->
+    <script src="modules/feedback-widget/src/feedback-widget.js"></script>
     <script>
         window.addEventListener("load", () => {
 
             FeedbackWidget.init();
+            SPA.init();
 
+            //  NOTE Test code
             let body = document.getElementById("body");
             const top = 0;
             const right = body.offsetWidth;
